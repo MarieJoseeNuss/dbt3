@@ -21,7 +21,12 @@ snapshot-paths: ["snapshots"]
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+# Pour finir cette partie sur la syntaxe Jinja, il est aussi possible de définir les variables dans le fichier dbt_project.yml directement à l'aide de la syntaxe suivante :
+# Nous pouvons alors faire appel à cette variable en utilisant la syntaxe Jinja :
+## {{ var('countries') }}
 
+vars:
+    countries: ["France", "Spain", "Germany", "United States"]
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models

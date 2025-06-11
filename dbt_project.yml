@@ -39,3 +39,16 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+## EXEMPLE on-run-end: "insert into DEMO_DB.PUBLIC.MY_FIRST_DBT_MODEL values(3)"
+
+on-run-start: "{{ auto_test(5) }}"
+on-run-end: "{{ auto_test(6) }}"
+
+## Automatisation
+## Il existe quelques méthodes dans dbt afin de lancer des requêtes SQL en amont du projet ou en aval de celui-ci 
+## mais aussi en amont d'un modèle ou en aval de celui-ci. Pour ajouter une étape en début d'un projet, 
+## il faut ajouter une clé on-run-start dans le fichier dbt_project.yml qui aura pour valeur la requête SQL à effectuer, 
+## pour effectuer des requêtes après la réalisation du projet il faut utiliser la clé on-run-end :
+## on-run-start: "<instruction SQL>;"
+## on-run-end: "<Instruction SQL>;"
+

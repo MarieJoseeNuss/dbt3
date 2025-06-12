@@ -1,0 +1,90 @@
+sources:
+  - name: music_src
+    database: dst_music
+    schema: public
+    tables:
+      - name: Playlist
+      - name: Genre
+      - name: MediaType
+      - name: Artist
+      - name: Album
+      - name: Track
+      - name: PlaylistTrack
+
+models:
+  - name: dimArtist
+    description: Table de dimension des artistes
+    columns:
+      - name: ArtistId
+        description: Clef primaire
+        tests: [unique, not_null]
+      - name: Name
+        description: Nom de l'artiste
+      - name: BirthYear
+        description: Année de naissance de l'artiste
+      - name: Country
+        description: Pays de l'artiste
+       
+  - name: dimAlbum
+    description: Table de dimension des albums
+    columns:
+      - name: AlbumID
+        description: Clef primaire
+        tests: [unique, not_null] 
+      - name: Title
+        description: Titre de l'album
+      - name: Prodyear
+        description: Année de production de l'album
+      - name: Cdyear
+        description: Le numéro du CD de l'album
+
+  - name: dimGenre
+    description: Table de dimension des genres
+    columns:
+      - name: GenreId
+        description: Clef primaire
+        tests: [unique, not_null]
+      - name: Name
+        description: Le nom du genre
+
+  - name: dimPlaylisttrack
+    description: Table de dimension des artistes
+    columns:
+      - name: PlaylistId
+        description: Clef primaire identifiant unique de la playlist
+        tests: [unique, not_null] 
+      - name: TrackId 
+        description: Clef secondaire vers les morceaux
+      - name: Name
+        description: Nom de la playlist
+
+  - name: dimComposer
+    description: Table de dimension des artistes
+    columns:
+      - name: ComposerId
+        description: Clef primaire identifiant unique du Compositeur
+        tests: [unique, not_null]
+      - name: Name
+        description: Nom du Compositeur du morceau
+  
+  - name: factTrack
+    description: Table de faits des morceaux
+    columns:
+      - name: TrackId
+        description: Clef primaire identifiant unique du morceau
+        tests: [unique, not_null]
+      - name: AlbumId
+        description: Identifiant de l'album
+      - name: GenreId
+        description:  Identifiant du genre
+      - name: ArtistId
+        description:  Identifiant de l'artiste
+      - name: ComposerId
+        description:  Identifiant du compositeur
+      - name: Name
+        description:  Nom du morceau
+      - name: Duration
+        description:  Durée en millisecondes du morceau
+      - name: Size
+        description:  Taille en Bytes du morceau
+

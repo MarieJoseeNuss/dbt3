@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+    - name: COVID19_Epidemiological_Data
+      description: 'Ceci est un test.'
+      database: COVID19_Epidemiological_Data
+      schema: PUBLIC
+      tables:
+        - name: DEMOGRAPHICS
+          description: 'Ceci est un test.'
+    
+models:
+    - name: my_first_join
+      description: "A starter dbt model: my_first_join.sql "
+      columns:
+        - name: name
+          tests:
+            - switzerland
+    - name: covid_demographics
+      description: "Another starter dbt model: covid_demographic.sql"
+      columns:
+        - name: country_region
+          tests:
+            - switzerland
+    
